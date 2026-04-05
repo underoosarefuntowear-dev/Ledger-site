@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ledger</title>
+</head>
+<body style="font-family: Arial; padding: 40px; max-width: 600px; margin: auto;">
+
+  <h1>Ledger</h1>
+
+  <p>You don’t need to organize this.<br>
+  Just tell me what’s been happening.</p>
+
+  <p><i>I’ll be listening and capturing everything you tell me—we’re building your case.</i></p>
+
+  <textarea id="input" rows="6" style="width:100%;"></textarea><br><br>
+
+  <button onclick="send()">Tell your story</button>
+
+  <h3>Response:</h3>
+  <p id="output"></p>
+
+  <script>
+    async function send() {
+      const text = document.getElementById("input").value;
+
+      const res = await fetch("YOUR_WEBHOOK_URL", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+      });
+
+      const data = await res.json();
+      document.getElementById("output").innerText = data.reply;
+
+      const audio = new Audio(data.audio);
+      audio.play();
+    }
+  </script>
+
+</body>
+</html>
