@@ -23,7 +23,7 @@
     async function send() {
       const text = document.getElementById("input").value;
 
-      const res = await fetch("YOUR_WEBHOOK_URL", {
+      const res = await fetch("https://hook.us2.make.com/i6ck0kkv9zkvdxbrzx3dxp24oal7pk73", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text })
